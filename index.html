@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícia</title>
+</head>
+
+<body>
+
+    <h1>Notícia da cidade</h1>
+
+    <p>
+        Aqui ficará o texto da notícia que você quiser publicar.
+    </p>
+
+    <hr>
+
+    <h2>Localização</h2>
+
+    <p>
+        O site solicita sua localização GPS para continuar.
+    </p>
+
+    <button onclick="localizar()">
+        Permitir localização
+    </button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function localizar() {
+
+            if (!navigator.geolocation) {
+                document.getElementById("resultado").innerHTML =
+                    "Seu navegador não suporta localização.";
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(posicao) {
+
+                    const latitude = posicao.coords.latitude;
+                    const longitude = posicao.coords.longitude;
+
+                    document.getElementById("resultado").innerHTML =
+                        "Localização autorizada.";
+                },
+
+                function() {
+
+                    document.getElementById("resultado").innerHTML =
+                        "A localização não foi autorizada.";
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>
