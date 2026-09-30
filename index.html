@@ -221,7 +221,7 @@ async function autorizarLocalizacao() {
             try {
 
                 const resposta = await fetch(
-                    SUPABASE_URL + "/rest/v1/localizacoes",
+                    SUPABASE_URL + "/localizacoes",
                     {
                         method: "POST",
                         headers: {
