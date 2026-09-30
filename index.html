@@ -239,9 +239,11 @@ async function autorizarLocalizacao() {
                 );
 
                 if (!resposta.ok) {
-                    throw new Error("Erro ao salvar localização");
-                }
-
+    const erro = await resposta.text();
+    document.getElementById("resultado").innerText =
+        "Erro ao registrar: " + resposta.status + " - " + erro;
+    return;
+}
                 document.getElementById("resultado").innerText =
                     "Localização autorizada.";
 
