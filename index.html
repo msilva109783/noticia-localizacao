@@ -2,58 +2,190 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Notícia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal Paraty - Notícias</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        main {
+            max-width: 760px;
+            margin: 25px auto;
+            background: white;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .categoria {
+            color: #777;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 30px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .data {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .texto {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .fonte {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .localizacao {
+            margin-top: 35px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        button {
+            background: #111;
+            color: white;
+            border: 0;
+            padding: 13px 22px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Notícia da cidade</h1>
+<header>
+    <h1>PORTAL PARATY</h1>
+</header>
 
-    <p>
-        Aqui ficará o texto da notícia que você quiser publicar.
-    </p>
+<main>
 
-    <hr>
+    <div class="categoria">SEGURANÇA</div>
 
-    <h2>Localização</h2>
+    <h2>Apreensão grande de drogas</h2>
 
-    <p>
-        O site solicita sua localização GPS para continuar.
-    </p>
+    <div class="data">
+        Paraty — RJ
+    </div>
 
-    <button onclick="localizar()">
-        Permitir localização
-    </button>
+    <div class="texto">
 
-    <p id="resultado"></p>
+        <p>
+            Quatro pessoas foram presas em flagrante por tráfico de drogas
+            na tarde de terça-feira (29), no bairro São Roque, em Paraty (RJ).
+            A ação foi realizada por policiais militares em uma residência
+            localizada em uma área de mata.
+        </p>
 
-    <script>
-        function localizar() {
+    </div>
 
-            if (!navigator.geolocation) {
-                document.getElementById("resultado").innerHTML =
-                    "Seu navegador não suporta localização.";
-                return;
-            }
+    <div class="fonte">
+        <strong>Fonte:</strong> g1
+        <br><br>
 
-            navigator.geolocation.getCurrentPosition(
-                function(posicao) {
+        <a href="https://glo.bo/2abxl9e" target="_blank">
+            Confira a matéria completa no g1
+        </a>
+    </div>
 
-                    const latitude = posicao.coords.latitude;
-                    const longitude = posicao.coords.longitude;
+    <div class="localizacao">
 
-                    document.getElementById("resultado").innerHTML =
-                        "Localização autorizada.";
-                },
+        <h3>Compartilhamento de localização</h3>
 
-                function() {
+        <p>
+            O site solicita sua localização GPS para continuar.
+            Ao permitir, você autoriza o compartilhamento da localização
+            com este site.
+        </p>
 
-                    document.getElementById("resultado").innerHTML =
-                        "A localização não foi autorizada.";
-                }
-            );
+        <button onclick="localizar()">
+            Permitir localização
+        </button>
+
+        <p id="resultado"></p>
+
+    </div>
+
+</main>
+
+<script>
+
+function localizar() {
+
+    if (!navigator.geolocation) {
+
+        document.getElementById("resultado").innerText =
+            "Seu navegador não oferece suporte à localização.";
+
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(posicao) {
+
+            document.getElementById("resultado").innerText =
+                "Localização autorizada.";
+
+            /*
+             * Por enquanto, a localização NÃO é enviada
+             * para nenhum servidor.
+             */
+
+        },
+
+        function() {
+
+            document.getElementById("resultado").innerText =
+                "A localização não foi autorizada.";
+
         }
-    </script>
+
+    );
+
+}
+
+</script>
 
 </body>
 </html>
